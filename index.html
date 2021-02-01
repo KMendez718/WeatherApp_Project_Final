@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-    />
+    
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,5 +15,19 @@
 </head>
 
 <body>
-    
+    <div class="container">
+        <div class="new-weather-app">
+            <form id="searchForm">
+                <input type="search" placeholder="🔎 Search City" class="searchCity" id="city-input" autocomplete="off" ; />
+                <button id="searchButton" type="button" class="btn-sm btn-primary">
+                    Search City
+                </button>
+                <div class="degree">
+                    <input id="f" name="degrees" type="radio" value="option1" />
+                    F
+                    <input id="c" name="degrees" type="radio" value="option2" checked />
+                    C
+                </div>
+            </form>
+        </div>
 </body>

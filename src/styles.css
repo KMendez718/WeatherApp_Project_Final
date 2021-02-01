@@ -2,3 +2,11 @@ body {
   margin-top: 50px;
   font-family: "Balsamiq Sans", cursive;
 }
+
+.new-weather-app {
+  max-width: 600px;
+  margin: 25px auto;
+  padding: 20px;
+  border: 1.5px solid #dadde3;
+  border-radius: 10px;
+}
