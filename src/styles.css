@@ -1,6 +1,7 @@
 body {
   margin-top: 50px;
   font-family: "Balsamiq Sans", cursive;
+  background-image: url("https://images.unsplash.com/photo-1590674642070-50abdd4151cd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80");
 }
 
 .new-weather-app {
@@ -9,6 +10,7 @@ body {
   padding: 20px;
   border: 1.5px solid #dadde3;
   border-radius: 10px;
+  background-color: #f6f5f5;
 }
 
 #city {
