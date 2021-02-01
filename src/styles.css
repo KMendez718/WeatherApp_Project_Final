@@ -10,3 +10,64 @@ body {
   border: 1.5px solid #dadde3;
   border-radius: 10px;
 }
+
+#city {
+  font-size: 25px;
+}
+
+h1 {
+  font-size: 35px;
+}
+
+.location {
+  color: black;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.time {
+  font-size: 16px;
+  line-height: 30px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  font-size: 15px;
+  line-height: 21px;
+  text-transform: capitalize;
+}
+
+.weather-forecast {
+  margin-top: 15px;
+}
+
+.weather-forecast h3 {
+  font-size: 14px;
+  text-align: center;
+  height: 15px;
+  line-height: 15px;
+  padding-top: 10px;
+}
+
+.weather-forecast img {
+  display: block;
+  margin: 0 auto;
+  height: 48px;
+  width: 48px;
+}
+
+.forecast-temp {
+  text-align: center;
+  font-size: 13px;
+  line-height: 50px;
+}
+
+#sourceCode {
+  height: 10px;
+  text-align: left;
+}
