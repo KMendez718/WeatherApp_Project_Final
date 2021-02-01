@@ -9,7 +9,7 @@ function formatDate(timestamp) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
   let day = days[date.getDay()];
 
@@ -35,6 +35,7 @@ function displayTemperature(response) {
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
+  let speedUnitElement = document.querySelector("#speed_units");
   let timeElement = document.querySelector("#time");
   let iconElement = document.querySelector("#icon");
 
@@ -45,6 +46,7 @@ function displayTemperature(response) {
   descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
+  speedUnitElement.innerHTML = isImperialUnits() ? "mph" : "km/h";
   timeElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
@@ -135,33 +137,38 @@ function displayForecast(response) {
 }
 
 function search(city) {
-    if (document.getElementById('f').checked) {
-    units="imperial";
-    } else {
-        units="metric";
-    }
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${getUnits()}`;
   axios.get(apiUrl).then(displayTemperature);
 
-  let apiUrlF = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  let apiUrlF = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${getUnits()}`;
   axios.get(apiUrlF).then(displayForecast);
+}
+
+function getUnits() {
+  if (isImperialUnits()) {
+    return "imperial";
+  } else {
+    return "metric";
+  }
+}
+
+function isImperialUnits() {
+  if (document.getElementById("f").checked) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function handlePosition(position) {
-    if (document.getElementById('f').checked) {
-    units="imperial";
-    } else {
-        units="metric";
-    }
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${getUnits()}&appid=${apiKey}`;
   axios.get(url).then(displayTemperature);
 
-    let apiUrlF = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
+  let apiUrlF = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${getUnits()}&appid=${apiKey}`;
   axios.get(apiUrlF).then(displayForecast);
 }
-
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -169,14 +176,13 @@ function handleSubmit(event) {
 }
 
 function searchCity() {
-   let cityInputElement = document.querySelector("#city-input");
-   if (cityInputElement.value == "") {
-       navigator.geolocation.getCurrentPosition(handlePosition);
-   } else {
-  search(cityInputElement.value);
-   }   
+  let cityInputElement = document.querySelector("#city-input");
+  if (cityInputElement.value == "") {
+    navigator.geolocation.getCurrentPosition(handlePosition);
+  } else {
+    search(cityInputElement.value);
+  }
 }
-
 
 document.getElementById("f").onclick = searchCity;
 document.getElementById("c").onclick = searchCity;
