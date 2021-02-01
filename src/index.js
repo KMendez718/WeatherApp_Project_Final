@@ -179,6 +179,9 @@ let celsTemp = null;
 let form = document.querySelector("#searchForm");
 form.addEventListener("submit", handleSubmit);
 
+let searchButton = document.querySelector("#searchButton");
+searchButton.addEventListener("click", handleSubmit);
+
 let fLink = document.querySelector("#f");
 fLink.addEventListener("click", showFahrTemp);
 
